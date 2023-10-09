@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">
+      <img src="./assets/images/freshcart-logo.svg" alt="logo" />
+    </a>
+    <button
+      class="navbar-toggler d-lg-none"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapsibleNavId"
+      aria-controls="collapsibleNavId"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul
+        class="navbar-nav ms-auto mt-2 mt-lg-0 align-items-center justify-content-center"
+      >
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active-link" routerLink="/home"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active-link"
+            routerLink="/products"
+            >Products</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active-link"
+            routerLink="/categories"
+            >Categories</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active-link"
+            routerLink="/brands"
+            >Brands</a
+          >
+        </li>
+      </ul>
+      <ul
+        class="navbar-nav ms-auto mt-2 mt-lg-0 justify-content-center align-items-center"
+      >
+        <li class="nav-item me-4 content-fit">
+          <a
+            class="nav-link main-color position-relative"
+            title="Your wishlist"
+            routerLinkActive="active-icon"
+            routerLink="/wishlist"
+            ><i class="fa-solid fa-heart fa-2x"></i>
+            <span class="badge bg-danger position-absolute top-0 end-0">{{
+              wishCountNumber
+            }}</span>
+          </a>
+        </li>
+        <li class="nav-item me-4 content-fit">
+          <a
+            class="nav-link main-color position-relative"
+            title="Your cart"
+            routerLinkActive="active-icon"
+            routerLink="/cart"
+            ><i class="fa-solid fa-cart-shopping fa-2x"></i>
+            <span class="badge bg-danger position-absolute top-0 end-0">{{
+              cartCountNumber
+            }}</span>
+          </a>
+        </li>
+        <li class="nav-item" (click)="signOut()">
+          <span role="button">Sign Out</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

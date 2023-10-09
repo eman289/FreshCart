@@ -1,0 +1,18 @@
+<section>
+  <div
+    class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4"
+  >
+    <div class="col" *ngFor="let category of categoriesData">
+      <div class="border rounded-2 p-2 text-center" role="button">
+        <img
+          class="w-100 object-fit-cover"
+          height="260"
+          [src]="category.image"
+          [alt]="category.name"
+          alt=""
+        />
+        <h2 class="h6 pt-3 main-color">{{ category.name }}</h2>
+      </div>
+    </div>
+  </div>
+</section>

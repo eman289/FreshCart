@@ -1,0 +1,124 @@
+<section class="pb-5">
+  <div class="row g-0">
+    <div class="col-md-8">
+      <owl-carousel-o [options]="mainSliderOptions">
+        <ng-template carouselSlide
+          ><img
+            class="w-100 object-fit-cover"
+            height="460"
+            src="./assets/images/main-slider-1.jpeg"
+            alt=""
+        /></ng-template>
+        <ng-template carouselSlide
+          ><img
+            class="w-100 object-fit-cover"
+            height="460"
+            src="./assets/images/main-slider-2.jpeg"
+            alt=""
+        /></ng-template>
+        <ng-template carouselSlide
+          ><img
+            class="w-100 object-fit-cover"
+            height="460"
+            src="./assets/images/main-slider-3.jpeg"
+            alt=""
+        /></ng-template>
+      </owl-carousel-o>
+    </div>
+    <div class="col-md-4 slider-fixed-pics">
+      <div class="row">
+        <img
+          class="object-fit-cover"
+          height="230"
+          src="./assets/images/slide-1.jpeg"
+          alt=""
+        />
+      </div>
+      <div class="row">
+        <img
+          class="object-fit-cover"
+          height="230"
+          src="./assets/images/slide-2.jpeg"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="row">
+    <owl-carousel-o [options]="categoryOptions">
+      <ng-container *ngFor="let category of categoriesData">
+        <ng-template carouselSlide [id]="category._id">
+          <img
+            class="w-100 object-fit-cover"
+            height="260"
+            [src]="category.image"
+            [alt]="category.name"
+            alt=""
+            [title]="category.name"
+          />
+          <h3 class="h6 main-color text-center pt-2">{{ category.name }}</h3>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="searchInput w-75 mx-auto mb-5">
+    <input
+      type="text"
+      placeholder="search for products..."
+      class="form-control"
+      [(ngModel)]="inputTerm"
+    />
+  </div>
+  <div
+    class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4"
+  >
+    <div class="col" *ngFor="let product of productsData | search : inputTerm">
+      <div class="card justify-content-around align-items-center p-2">
+        <div
+          #addWishBtn
+          class="addWish-btn main-color"
+          (click)="addWish(product._id, addWishBtn, removeWishBtn)"
+        >
+          <i class="fa-regular fa-heart"></i>
+        </div>
+        <div
+          #removeWishBtn
+          class="removeWish-btn main-color d-none"
+          (click)="removeWish(product._id, addWishBtn, removeWishBtn)"
+        >
+          <i class="fa-solid fa-heart"></i>
+        </div>
+        <div [routerLink]="['/details', product._id]">
+          <img class="w-100" [src]="product.imageCover" alt="" />
+          <div class="productDetails p-1 pt-2">
+            <h4 class="small main-color fw-bolder">
+              {{ product.category.name }}
+            </h4>
+            <h3 class="small">{{ product.title | cuttext }}</h3>
+            <div
+              class="product-footer small d-flex justify-content-between align-items-center"
+            >
+              <span class="">{{ product.price | currency : "EGP " }}</span>
+              <div class="rating">
+                <i class="fa-solid fa-star rating-color"></i>
+                <span> {{ product.ratingsAverage }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          (click)="addProduct(product._id)"
+          class="main-btn small card-btn w-100"
+        >
+          <i class="fa-solid fa-plus"></i> Add to cart
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

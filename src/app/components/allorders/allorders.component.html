@@ -1,0 +1,60 @@
+<section>
+  <div
+    class="caption bg-main-light p-5 rounded-2 shadow-sm text-center"
+    *ngIf="isEmpty"
+  >
+    <h3>You haven't <span class="main-color">ordered</span> yet!</h3>
+  </div>
+
+  <div class="bg-main-light p-4 rounded-2 shadow-sm" *ngIf="!isEmpty">
+    <h2 class="text-center border-bottom pb-3">
+      Your <span class="main-color">Orders</span>
+    </h2>
+    <div
+      class="row border-bottom py-4"
+      *ngFor="let product of ordersData; index as number"
+    >
+      <h2 class="h4 pb-3">Order {{ number + 1 }}</h2>
+
+      <div class="col-md-2" *ngFor="let item of product.cartItems">
+        <img
+          class="w-100 img-thumbnail mb-3"
+          [src]="item.product.imageCover"
+          [alt]="item.product.title"
+          alt=""
+        />
+      </div>
+      <div class="order-info">
+        <h3 class="small h6">
+          <span class="main-color fw-bold">Total price: </span
+          >{{ product.totalOrderPrice | currency : "EGP " }}
+        </h3>
+        <h3 class="small h6">
+          <span class="main-color fw-bold">Payment method: </span
+          >{{ product.paymentMethodType }}
+        </h3>
+        <h3 class="small h6">
+          <span class="main-color fw-bold">Shipping price: </span
+          >{{ product.shippingPrice }}
+        </h3>
+        <h3 class="small h6">
+          <span class="main-color fw-bold">Shipping info: </span>
+          <ul class="list-unstyled">
+            <li class="pt-2 ps-2">
+              <span class="main-color fw-bold">City: </span
+              >{{ product.shippingAddress.city }}
+            </li>
+            <li class="pt-2 ps-2">
+              <span class="main-color fw-bold">Details: </span
+              >{{ product.shippingAddress.details }}
+            </li>
+            <li class="pt-2 ps-2">
+              <span class="main-color fw-bold">phone: </span
+              >{{ product.shippingAddress.phone }}
+            </li>
+          </ul>
+        </h3>
+      </div>
+    </div>
+  </div>
+</section>

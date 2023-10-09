@@ -1,0 +1,36 @@
+<form
+  [formGroup]="checkOutForm"
+  (ngSubmit)="submitForm()"
+  class="w-75 mx-auto bg-main-light p-5 rounded-2 shadow-sm"
+>
+  <div class="form-item">
+    <label for="details" class="mb-1">Details:</label>
+    <input
+      type="text"
+      class="form-control mb-3"
+      id="details"
+      formControlName="details"
+    />
+  </div>
+  <div class="form-item">
+    <label for="phone" class="mb-1">Phone:</label>
+    <input
+      type="tel"
+      class="form-control mb-3"
+      id="phone"
+      formControlName="phone"
+    />
+  </div>
+  <div class="form-item">
+    <label for="city" class="mb-1">City:</label>
+    <input
+      type="text"
+      class="form-control mb-3"
+      id="city"
+      formControlName="city"
+    />
+  </div>
+  <button type="submit" class="main-btn">
+    Check out <i *ngIf="isLoading" class="fa-solid fa-circle-notch fa-spin"></i>
+  </button>
+</form>

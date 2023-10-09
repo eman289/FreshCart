@@ -1,0 +1,86 @@
+<section>
+  <div
+    class="cartCaption bg-main-light p-5 rounded-2 shadow-sm text-center"
+    *ngIf="isEmpty"
+  >
+    <h3>Your <span class="main-color">Cart</span> Is Empty!</h3>
+  </div>
+
+  <div class="bg-main-light p-4 rounded-2 shadow-sm" *ngIf="!isEmpty">
+    <div class="clearBtn d-flex">
+      <button
+        class="btn btn-danger text-white ms-auto"
+        (click)="removeAllProducts()"
+      >
+        <i class="fa-solid fa-trash-can"></i> Clear cart
+      </button>
+    </div>
+    <h4 class="h6 border-bottom pb-4">
+      <span class="main-color fw-bold">Total Price: </span
+      >{{ cartData.totalCartPrice | currency : "EGP " }}
+    </h4>
+    <div
+      class="row border-bottom py-4"
+      *ngFor="let product of cartData.products"
+    >
+      <div class="col-md-2">
+        <img
+          class="w-100 img-thumbnail mb-3 mb-md-0"
+          [src]="product.product.imageCover"
+          [alt]="product.product.title"
+          alt=""
+        />
+      </div>
+      <div class="col-md-10 d-flex justify-content-between align-items-center">
+        <div class="product-data">
+          <h3 class="h5 fw-bold">{{ product.product.title | cuttext }}</h3>
+          <h4 class="h6">
+            <span class="main-color fw-bold">Price: </span
+            >{{ product.price | currency : "EGP " }}
+          </h4>
+          <button
+            class="remove-btn btn ps-0 ms-0"
+            (click)="removeProduct(product.product._id)"
+          >
+            <i class="fa-solid fa-trash-can main-color"></i
+            ><span class=""> Remove</span>
+          </button>
+        </div>
+        <div class="product-count">
+          <button
+            #plusBtn
+            class="btn btn-sm main-border fs-6"
+            (click)="
+              changeCount(
+                product.product._id,
+                product.count + 1,
+                plusBtn,
+                minusBtn
+              )
+            "
+          >
+            +
+          </button>
+          <span class="px-2 fw-bold">{{ product.count }}</span>
+          <button
+            #minusBtn
+            class="btn btn-sm main-border fs-6"
+            (click)="
+              changeCount(
+                product.product._id,
+                product.count - 1,
+                plusBtn,
+                minusBtn
+              )
+            "
+          >
+            -
+          </button>
+        </div>
+      </div>
+    </div>
+    <button class="main-btn mt-4" [routerLink]="['/payment', cartData._id]">
+      Online payment <img src="./assets/images/visa-1.svg" alt="" />
+    </button>
+  </div>
+</section>
