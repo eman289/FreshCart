@@ -21,12 +21,28 @@ export class ProductsComponent implements OnInit {
 
   productsData: Product[] = [];
   inputTerm: string = '';
+  pageSize: number = 0;
+  page: number = 1;
+  total: number = 0;
 
   ngOnInit(): void {
     this._ProductsService.getProducts().subscribe({
-      next: ({ data }) => {
-        this.productsData = data;
-        console.log(this.productsData);
+      next: (response) => {
+        this.productsData = response.data;
+        this.pageSize = response.metadata.limit;
+        this.page = response.metadata.currentPage;
+        this.total = response.results;
+      },
+    });
+  }
+
+  pageChanged(event: number): void {
+    this._ProductsService.getProducts(event).subscribe({
+      next: (response) => {
+        this.productsData = response.data;
+        this.pageSize = response.metadata.limit;
+        this.page = response.metadata.currentPage;
+        this.total = response.results;
       },
     });
   }

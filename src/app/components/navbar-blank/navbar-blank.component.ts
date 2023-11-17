@@ -46,6 +46,7 @@ export class NavbarBlankComponent implements OnInit {
 
   signOut(): void {
     localStorage.removeItem('_token');
+    localStorage.removeItem('cartOwner');
     this._Router.navigate(['/login']);
   }
 }

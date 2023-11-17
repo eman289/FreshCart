@@ -14,8 +14,40 @@ $main-transition: 0.4s;
   color: #fff;
 }
 
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $light-color;
+  border-radius: 100vh;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $main-color;
+  background: -webkit-linear-gradient(to bottom, #0aad0a 0%, #ffc908 100%);
+  background: -moz-linear-gradient(to bottom, #0aad0a 0%, #ffc908 100%);
+  background: linear-gradient(to bottom, #0aad0a 0%, #ffc908 100%);
+  border-radius: 100vh;
+}
+
 body {
+  font-family: $font-family;
   letter-spacing: 0.8px;
+  background-image: url(./assets/images/light-patten.svg);
+}
+
+.navbar {
+  box-shadow: 0px -8px 10px 2px;
+
+  .nav-link:hover,
+  .nav-link:focus {
+    color: #26d326;
+  }
+}
+
+footer {
+  box-shadow: 0px 8px 8px 2px;
 }
 
 .main-color {
@@ -28,10 +60,6 @@ body {
 
 .font-sm {
   font-size: 12px;
-}
-
-body {
-  font-family: $font-family;
 }
 
 .bg-main {
@@ -146,8 +174,42 @@ body {
   }
 }
 
-@media screen and (max-width: 568px) {
+.owl-theme .owl-nav [class*="owl-"]:hover {
+  background: #26d326;
+}
+
+.ngx-pagination .current {
+  padding: 0.1875rem 0.625rem;
+  background: $main-color !important;
+  border-radius: 10px;
+  color: #fefefe;
+  cursor: default;
+}
+
+.ngx-pagination a,
+.ngx-pagination button {
+  text-decoration: none;
+}
+
+.goUpBtn {
+  position: fixed;
+  z-index: 999;
+  right: 20px;
+  bottom: 20px;
+  width: 45px;
+  height: 45px;
+
+  i {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
   :root {
     font-size: 13px;
+  }
+
+  .card:hover {
+    transform: none;
   }
 }

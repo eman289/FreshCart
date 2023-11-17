@@ -1,4 +1,4 @@
-<section class="pt-1 pb-5">
+<section class="pt-5">
   <div class="searchInput w-75 mx-auto mb-5">
     <input
       type="text"
@@ -10,7 +10,20 @@
   <div
     class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4"
   >
-    <div class="col" *ngFor="let product of productsData | search : inputTerm">
+    <div
+      class="col"
+      *ngFor="
+        let product of productsData
+          | search : inputTerm
+          | paginate
+            : {
+                id: 'productsPaginate',
+                itemsPerPage: pageSize,
+                currentPage: page,
+                totalItems: total
+              }
+      "
+    >
       <div class="card justify-content-around align-items-center p-2">
         <div
           #addWishBtn
@@ -52,5 +65,23 @@
         </button>
       </div>
     </div>
+  </div>
+  <div class="pagination d-flex justify-content-center mt-5">
+    <pagination-controls
+      class="my-pagination"
+      id="productsPaginate"
+      (pageChange)="pageChanged($event)"
+      (pageBoundsCorrection)="pageChanged($event)"
+      [maxSize]="9"
+      [directionLinks]="true"
+      [autoHide]="true"
+      [responsive]="true"
+      previousLabel="Previous"
+      nextLabel="Next"
+      screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="page"
+      screenReaderCurrentLabel="You're on page"
+    >
+    </pagination-controls>
   </div>
 </section>

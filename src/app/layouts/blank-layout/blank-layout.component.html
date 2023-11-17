@@ -3,3 +3,13 @@
   <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>
+<button
+  #goUpBtn
+  class="goUpBtn main-btn rounded-circle"
+  title="Go up"
+  (click)="goUp()"
+  *ngIf="isButtonVisible"
+  [@fade]
+>
+  <i class="fa-solid fa-arrow-up"></i>
+</button>

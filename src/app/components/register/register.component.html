@@ -1,174 +1,190 @@
-<form
-  [formGroup]="registerForm"
-  (ngSubmit)="registerData()"
-  class="rounded shadow-sm w-75 mx-auto bg-main-light p-4"
->
-  <label for="name">Name:</label>
-  <input
-    type="text"
-    id="name"
-    class="form-control mt-1"
-    formControlName="name"
-    placeholder="enter your name"
-    [class]="
-      registerForm.get('name')?.errors &&
-      (registerForm.get('name')?.touched ||
-        registerForm.get('name')?.value.length > 0)
-        ? 'is-invalid'
-        : ''
-    "
-  />
-  <div
-    class="text-invalid"
-    *ngIf="
-      registerForm.get('name')?.errors &&
-      (registerForm.get('name')?.touched ||
-        registerForm.get('name')?.value.length > 0)
-    "
-  >
-    <p *ngIf="registerForm.get('name')?.getError('required')">
-      Please enter your name.
-    </p>
-    <p *ngIf="registerForm.get('name')?.getError('minlength')">
-      Your name must be 3 characters at least!
-    </p>
-    <p *ngIf="registerForm.get('name')?.getError('maxlength')">
-      Your name must be up to 10 characters only!
-    </p>
-  </div>
+<section class="pb-4">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-lg-6">
+      <div id="your-animation-container-register"></div>
+    </div>
+    <div class="col-lg-6">
+      <form [formGroup]="registerForm" (ngSubmit)="registerData()" class="">
+        <div class="form-floating mb-2">
+          <input
+            type="text"
+            id="name"
+            class="form-control mt-1"
+            formControlName="name"
+            placeholder="enter your name"
+            [class]="
+              registerForm.get('name')?.errors &&
+              (registerForm.get('name')?.touched ||
+                registerForm.get('name')?.value.length > 0)
+                ? 'is-invalid'
+                : ''
+            "
+          />
+          <label for="name">Name:</label>
+          <div
+            class="text-invalid"
+            *ngIf="
+              registerForm.get('name')?.errors &&
+              (registerForm.get('name')?.touched ||
+                registerForm.get('name')?.value.length > 0)
+            "
+          >
+            <p *ngIf="registerForm.get('name')?.getError('required')">
+              Please enter your name.
+            </p>
+            <p *ngIf="registerForm.get('name')?.getError('minlength')">
+              Your name must be 3 characters at least!
+            </p>
+            <p *ngIf="registerForm.get('name')?.getError('maxlength')">
+              Your name must be up to 10 characters only!
+            </p>
+          </div>
+        </div>
 
-  <label for="email" class="mt-2">Email:</label>
-  <input
-    type="email"
-    id="email"
-    class="form-control mt-1"
-    formControlName="email"
-    placeholder="enter your email"
-    [class]="
-      registerForm.get('email')?.errors &&
-      (registerForm.get('email')?.touched ||
-        registerForm.get('email')?.value.length > 0)
-        ? 'is-invalid'
-        : ''
-    "
-  />
-  <div
-    class="text-invalid"
-    *ngIf="
-      registerForm.get('email')?.errors &&
-      (registerForm.get('email')?.touched ||
-        registerForm.get('email')?.value.length > 0)
-    "
-  >
-    <p *ngIf="registerForm.get('email')?.getError('required')">
-      Please enter your email.
-    </p>
-    <p *ngIf="registerForm.get('email')?.getError('email')">
-      Email must be valid!
-    </p>
-  </div>
+        <div class="form-floating mb-2">
+          <input
+            type="email"
+            id="email"
+            class="form-control mt-1"
+            formControlName="email"
+            placeholder="enter your email"
+            [class]="
+              registerForm.get('email')?.errors &&
+              (registerForm.get('email')?.touched ||
+                registerForm.get('email')?.value.length > 0)
+                ? 'is-invalid'
+                : ''
+            "
+          />
+          <label for="email">Email:</label>
+          <div
+            class="text-invalid"
+            *ngIf="
+              registerForm.get('email')?.errors &&
+              (registerForm.get('email')?.touched ||
+                registerForm.get('email')?.value.length > 0)
+            "
+          >
+            <p *ngIf="registerForm.get('email')?.getError('required')">
+              Please enter your email.
+            </p>
+            <p *ngIf="registerForm.get('email')?.getError('email')">
+              Email must be valid!
+            </p>
+          </div>
+        </div>
 
-  <label for="password" class="mt-2">password:</label>
-  <input
-    type="password"
-    id="password"
-    class="form-control mt-1"
-    formControlName="password"
-    placeholder="enter your password"
-    [class]="
-      registerForm.get('password')?.errors &&
-      (registerForm.get('password')?.touched ||
-        registerForm.get('password')?.value.length > 0)
-        ? 'is-invalid'
-        : ''
-    "
-  />
-  <div
-    class="text-invalid"
-    *ngIf="
-      registerForm.get('password')?.errors &&
-      (registerForm.get('password')?.touched ||
-        registerForm.get('password')?.value.length > 0)
-    "
-  >
-    <p *ngIf="registerForm.get('password')?.getError('required')">
-      Please enter your password.
-    </p>
-    <p *ngIf="registerForm.get('password')?.getError('pattern')">
-      Password must be 6 characters at least!
-    </p>
-  </div>
+        <div class="form-floating mb-2">
+          <input
+            type="password"
+            id="password"
+            class="form-control mt-1"
+            formControlName="password"
+            placeholder="enter your password"
+            [class]="
+              registerForm.get('password')?.errors &&
+              (registerForm.get('password')?.touched ||
+                registerForm.get('password')?.value.length > 0)
+                ? 'is-invalid'
+                : ''
+            "
+          />
+          <label for="password">password:</label>
+          <div
+            class="text-invalid"
+            *ngIf="
+              registerForm.get('password')?.errors &&
+              (registerForm.get('password')?.touched ||
+                registerForm.get('password')?.value.length > 0)
+            "
+          >
+            <p *ngIf="registerForm.get('password')?.getError('required')">
+              Please enter your password.
+            </p>
+            <p *ngIf="registerForm.get('password')?.getError('pattern')">
+              Password must be 6 characters at least!
+            </p>
+          </div>
+        </div>
 
-  <label for="rePassword" class="mt-2">Re-Password:</label>
-  <input
-    type="password"
-    id="rePassword"
-    class="form-control mt-1"
-    formControlName="rePassword"
-    placeholder="re-enter your Password"
-    [class]="
-      registerForm.get('rePassword')?.errors &&
-      (registerForm.get('rePassword')?.touched ||
-        registerForm.get('rePassword')?.value.length > 0)
-        ? 'is-invalid'
-        : ''
-    "
-  />
-  <div
-    class="text-invalid"
-    *ngIf="
-      registerForm.get('rePassword')?.errors &&
-      (registerForm.get('rePassword')?.touched ||
-        registerForm.get('rePassword')?.value.length > 0)
-    "
-  >
-    <p *ngIf="registerForm.get('rePassword')?.getError('required')">
-      Please re-enter your password.
-    </p>
-    <p *ngIf="registerForm.get('rePassword')?.getError('pattern')">
-      Password doesn't match!
-    </p>
-  </div>
+        <div class="form-floating mb-2">
+          <input
+            type="password"
+            id="rePassword"
+            class="form-control mt-1"
+            formControlName="rePassword"
+            placeholder="re-enter your Password"
+            [class]="
+              registerForm.get('rePassword')?.errors &&
+              (registerForm.get('rePassword')?.touched ||
+                registerForm.get('rePassword')?.value.length > 0)
+                ? 'is-invalid'
+                : ''
+            "
+          />
+          <label for="rePassword">Re-Password:</label>
+          <div
+            class="text-invalid"
+            *ngIf="
+              registerForm.get('rePassword')?.errors &&
+              (registerForm.get('rePassword')?.touched ||
+                registerForm.get('rePassword')?.value.length > 0)
+            "
+          >
+            <p *ngIf="registerForm.get('rePassword')?.getError('required')">
+              Please re-enter your password.
+            </p>
+            <p *ngIf="registerForm.get('rePassword')?.getError('pattern')">
+              Password doesn't match!
+            </p>
+          </div>
+        </div>
 
-  <label for="phone" class="mt-2">Phone:</label>
-  <input
-    type="tel"
-    id="phone"
-    class="form-control mt-1"
-    formControlName="phone"
-    placeholder="enter your phone"
-    [class]="
-      registerForm.get('phone')?.errors &&
-      (registerForm.get('phone')?.touched ||
-        registerForm.get('phone')?.value.length > 0)
-        ? 'is-invalid'
-        : ''
-    "
-  />
-  <div
-    class="text-invalid"
-    *ngIf="
-      registerForm.get('phone')?.errors &&
-      (registerForm.get('phone')?.touched ||
-        registerForm.get('phone')?.value.length > 0)
-    "
-  >
-    <p *ngIf="registerForm.get('phone')?.getError('required')">
-      Please enter your phone number.
-    </p>
-    <p *ngIf="registerForm.get('phone')?.getError('pattern')">
-      Only Egypt phone numbers are allowed!
-    </p>
-  </div>
+        <div class="form-floating">
+          <input
+            type="tel"
+            id="phone"
+            class="form-control mt-1"
+            formControlName="phone"
+            placeholder="enter your phone"
+            [class]="
+              registerForm.get('phone')?.errors &&
+              (registerForm.get('phone')?.touched ||
+                registerForm.get('phone')?.value.length > 0)
+                ? 'is-invalid'
+                : ''
+            "
+          />
+          <label for="phone">Phone:</label>
+          <div
+            class="text-invalid"
+            *ngIf="
+              registerForm.get('phone')?.errors &&
+              (registerForm.get('phone')?.touched ||
+                registerForm.get('phone')?.value.length > 0)
+            "
+          >
+            <p *ngIf="registerForm.get('phone')?.getError('required')">
+              Please enter your phone number.
+            </p>
+            <p *ngIf="registerForm.get('phone')?.getError('pattern')">
+              Only Egypt phone numbers are allowed!
+            </p>
+          </div>
+        </div>
 
-  <button
-    [disabled]="registerForm.invalid"
-    type="submit"
-    class="main-btn mt-3 d-block mx-auto"
-  >
-    Register <i *ngIf="isLoading" class="fa-solid fa-circle-notch fa-spin"></i>
-  </button>
-  <p *ngIf="errorMsg" class="text-invalid mx-auto content-fit">
-    {{ errorMsg }}
-  </p>
-</form>
+        <button
+          [disabled]="registerForm.invalid"
+          type="submit"
+          class="main-btn rounded-pill mt-3 ms-1 d-block ms-auto px-4 py-2"
+        >
+          Register
+          <i *ngIf="isLoading" class="fa-solid fa-circle-notch fa-spin"></i>
+        </button>
+        <p *ngIf="errorMsg" class="text-invalid mx-auto content-fit">
+          {{ errorMsg }}
+        </p>
+      </form>
+    </div>
+  </div>
+</section>

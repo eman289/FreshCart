@@ -40,7 +40,7 @@ export class PaymentComponent implements OnInit {
       next: (response) => {
         this.isLoading = false;
         console.log(response);
-        window.open(response.session.url);
+        window.open(response.session.url, '_self');
       },
     });
   }

@@ -1,83 +1,96 @@
-<form
-  [formGroup]="loginForm"
-  (ngSubmit)="loginData()"
-  class="rounded-2 shadow-sm w-75 mx-auto bg-main-light p-4"
->
-  <label for="email" class="mt-2">Email:</label>
-  <input
-    type="email"
-    id="email"
-    class="form-control mt-1"
-    formControlName="email"
-    placeholder="enter your email"
-    [class]="
-      loginForm.get('email')?.errors &&
-      (loginForm.get('email')?.touched ||
-        loginForm.get('email')?.value.length > 0)
-        ? 'is-invalid'
-        : ''
-    "
-  />
-  <div
-    class="text-invalid"
-    *ngIf="
-      loginForm.get('email')?.errors &&
-      (loginForm.get('email')?.touched ||
-        loginForm.get('email')?.value.length > 0)
-    "
-  >
-    <p *ngIf="loginForm.get('email')?.getError('required')">
-      Please enter your email.
-    </p>
-    <p *ngIf="loginForm.get('email')?.getError('email')">
-      Email must be valid!
-    </p>
-  </div>
+<section class="pb-3">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-lg-5">
+      <form [formGroup]="loginForm" (ngSubmit)="loginData()" class="">
+        <div class="form-floating mb-2">
+          <input
+            type="email"
+            id="email"
+            class="form-control mt-1"
+            formControlName="email"
+            placeholder="enter your email"
+            [class]="
+              loginForm.get('email')?.errors &&
+              (loginForm.get('email')?.touched ||
+                loginForm.get('email')?.value.length > 0)
+                ? 'is-invalid'
+                : ''
+            "
+          />
+          <label for="email">Email:</label>
+          <div
+            class="text-invalid"
+            *ngIf="
+              loginForm.get('email')?.errors &&
+              (loginForm.get('email')?.touched ||
+                loginForm.get('email')?.value.length > 0)
+            "
+          >
+            <p *ngIf="loginForm.get('email')?.getError('required')">
+              Please enter your email.
+            </p>
+            <p *ngIf="loginForm.get('email')?.getError('email')">
+              Email must be valid!
+            </p>
+          </div>
+        </div>
 
-  <label for="password" class="mt-2">password:</label>
-  <input
-    type="password"
-    id="password"
-    class="form-control mt-1"
-    formControlName="password"
-    placeholder="enter your password"
-    [class]="
-      loginForm.get('password')?.errors &&
-      (loginForm.get('password')?.touched ||
-        loginForm.get('password')?.value.length > 0)
-        ? 'is-invalid'
-        : ''
-    "
-  />
-  <div
-    class="text-invalid"
-    *ngIf="
-      loginForm.get('password')?.errors &&
-      (loginForm.get('password')?.touched ||
-        loginForm.get('password')?.value.length > 0)
-    "
-  >
-    <p *ngIf="loginForm.get('password')?.getError('required')">
-      Please enter your password.
-    </p>
-    <p *ngIf="loginForm.get('password')?.getError('pattern')">
-      Password must be 6 characters at least!
-    </p>
-  </div>
+        <div class="form-floating">
+          <input
+            type="password"
+            id="password"
+            class="form-control mt-1"
+            formControlName="password"
+            placeholder="enter your password"
+            [class]="
+              loginForm.get('password')?.errors &&
+              (loginForm.get('password')?.touched ||
+                loginForm.get('password')?.value.length > 0)
+                ? 'is-invalid'
+                : ''
+            "
+          />
+          <label for="password">password:</label>
+          <div
+            class="text-invalid"
+            *ngIf="
+              loginForm.get('password')?.errors &&
+              (loginForm.get('password')?.touched ||
+                loginForm.get('password')?.value.length > 0)
+            "
+          >
+            <p *ngIf="loginForm.get('password')?.getError('required')">
+              Please enter your password.
+            </p>
+            <p *ngIf="loginForm.get('password')?.getError('pattern')">
+              Password must be 6 characters at least!
+            </p>
+          </div>
+        </div>
 
-  <div class="d-flex justify-content-between align-items-center">
-    <span class="mt-4 main-color" role="button" routerLink="/forgotpassword"
-      >Forgot password?</span
-    >
-    <button
-      [disabled]="loginForm.invalid"
-      type="submit"
-      class="main-btn mt-4 d-block ms-auto"
-    >
-      Login <i *ngIf="isLoading" class="fa-solid fa-circle-notch fa-spin"></i>
-    </button>
+        <div class="d-flex justify-content-between align-items-center">
+          <button
+            [disabled]="loginForm.invalid"
+            type="submit"
+            class="main-btn rounded-pill mt-3 ms-1 d-block me-auto px-4 py-2"
+          >
+            Login
+            <i *ngIf="isLoading" class="fa-solid fa-circle-notch fa-spin"></i>
+          </button>
+          <span
+            class="mt-1 small main-color"
+            role="button"
+            routerLink="/forgotpassword"
+            >Forgot password?</span
+          >
+        </div>
+        <p *ngIf="errorMsg" class="text-invalid mx-auto content-fit mt-3">
+          {{ errorMsg }}
+        </p>
+      </form>
+    </div>
+    <div class="col-lg-7">
+      <div id="your-animation-container-login"></div>
+    </div>
   </div>
-  <p *ngIf="errorMsg" class="text-invalid mx-auto content-fit mt-3">
-    {{ errorMsg }}
-  </p>
-</form>
+</section>

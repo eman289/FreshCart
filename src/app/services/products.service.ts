@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 export class ProductsService {
   constructor(private _HttpClient: HttpClient) {}
 
-  getProducts(): Observable<any> {
+  getProducts(pageNum: number = 1): Observable<any> {
     return this._HttpClient.get(
-      `https://ecommerce.routemisr.com/api/v1/products`
+      `https://ecommerce.routemisr.com/api/v1/products?page=${pageNum}`
     );
   }
 

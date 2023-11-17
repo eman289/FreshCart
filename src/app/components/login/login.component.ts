@@ -1,15 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import lottie from 'lottie-web';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements AfterViewInit {
   constructor(private _AuthService: AuthService, private _Router: Router) {}
+
+  isLoading: boolean = false;
+  errorMsg: string = '';
+  animation: any;
+  container: Element | null = null;
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -18,10 +24,6 @@ export class LoginComponent {
       Validators.pattern(/^\w{6,}$/),
     ]),
   });
-
-  isLoading: boolean = false;
-
-  errorMsg: string = '';
 
   loginData(): void {
     this.isLoading = true;
@@ -39,6 +41,20 @@ export class LoginComponent {
           console.log(err);
           this.errorMsg = err.error.message;
         },
+      });
+    }
+  }
+
+  ngAfterViewInit(): void {
+    this.container = document.getElementById('your-animation-container-login');
+
+    if (this.container) {
+      this.animation = lottie.loadAnimation({
+        container: this.container,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: './assets/images/freshCart.json',
       });
     }
   }

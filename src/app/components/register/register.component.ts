@@ -1,15 +1,21 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import lottie from 'lottie-web';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements AfterViewInit {
   constructor(private _AuthService: AuthService, private _Router: Router) {}
+
+  isLoading: boolean = false;
+  errorMsg: string = '';
+  animation: any;
+  container: Element | null = null;
 
   registerForm: FormGroup = new FormGroup({
     name: new FormControl('', [
@@ -32,10 +38,6 @@ export class RegisterComponent {
     ]),
   });
 
-  isLoading: boolean = false;
-
-  errorMsg: string = '';
-
   registerData(): void {
     this.isLoading = true;
     if (this.registerForm.valid) {
@@ -51,6 +53,22 @@ export class RegisterComponent {
           console.log(err);
           this.errorMsg = err.error.message;
         },
+      });
+    }
+  }
+
+  ngAfterViewInit(): void {
+    this.container = document.getElementById(
+      'your-animation-container-register'
+    );
+
+    if (this.container) {
+      this.animation = lottie.loadAnimation({
+        container: this.container,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: './assets/images/signup.json',
       });
     }
   }

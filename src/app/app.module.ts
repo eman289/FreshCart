@@ -31,6 +31,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { SearchPipe } from './pipes/search.pipe';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CarouselModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
+    NgxPaginationModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: MyhttpInterceptor, multi: true },

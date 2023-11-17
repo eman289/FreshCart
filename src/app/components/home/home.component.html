@@ -1,4 +1,4 @@
-<section class="pb-5">
+<section class="pt-5">
   <div class="row g-0">
     <div class="col-md-8">
       <owl-carousel-o [options]="mainSliderOptions">
@@ -6,21 +6,28 @@
           ><img
             class="w-100 object-fit-cover"
             height="460"
-            src="./assets/images/main-slider-1.jpeg"
+            src="./assets/images/slide1.jpg"
             alt=""
         /></ng-template>
         <ng-template carouselSlide
           ><img
             class="w-100 object-fit-cover"
             height="460"
-            src="./assets/images/main-slider-2.jpeg"
+            src="./assets/images/slide2.jpg"
             alt=""
         /></ng-template>
         <ng-template carouselSlide
           ><img
             class="w-100 object-fit-cover"
             height="460"
-            src="./assets/images/main-slider-3.jpeg"
+            src="./assets/images/slide3.jpg"
+            alt=""
+        /></ng-template>
+        <ng-template carouselSlide
+          ><img
+            class="w-100 object-fit-cover"
+            height="460"
+            src="./assets/images/slide4.jpg"
             alt=""
         /></ng-template>
       </owl-carousel-o>
@@ -30,7 +37,7 @@
         <img
           class="object-fit-cover"
           height="230"
-          src="./assets/images/slide-1.jpeg"
+          src="./assets/images/fixedImg1.jpg"
           alt=""
         />
       </div>
@@ -38,7 +45,7 @@
         <img
           class="object-fit-cover"
           height="230"
-          src="./assets/images/slide-2.jpeg"
+          src="./assets/images/fixedImg2.jpg"
           alt=""
         />
       </div>
@@ -46,8 +53,13 @@
   </div>
 </section>
 
-<section>
+<section class="pt-4">
   <div class="row">
+    <div class="secTitle mb-3">
+      <h3 class="text-center">
+        Main <span class="main-color">Categories</span>
+      </h3>
+    </div>
     <owl-carousel-o [options]="categoryOptions">
       <ng-container *ngFor="let category of categoriesData">
         <ng-template carouselSlide [id]="category._id">
@@ -66,7 +78,10 @@
   </div>
 </section>
 
-<section class="py-5">
+<section class="pt-4">
+  <div class="secTitle mb-3">
+    <h3 class="text-center">Our <span class="main-color">Products</span></h3>
+  </div>
   <div class="searchInput w-75 mx-auto mb-5">
     <input
       type="text"
@@ -78,7 +93,20 @@
   <div
     class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4"
   >
-    <div class="col" *ngFor="let product of productsData | search : inputTerm">
+    <div
+      class="col"
+      *ngFor="
+        let product of productsData
+          | search : inputTerm
+          | paginate
+            : {
+                id: 'productsPaginate',
+                itemsPerPage: pageSize,
+                currentPage: page,
+                totalItems: total
+              }
+      "
+    >
       <div class="card justify-content-around align-items-center p-2">
         <div
           #addWishBtn
@@ -120,5 +148,23 @@
         </button>
       </div>
     </div>
+  </div>
+  <div class="pagination d-flex justify-content-center mt-5">
+    <pagination-controls
+      class="my-pagination"
+      id="productsPaginate"
+      (pageChange)="pageChanged($event)"
+      (pageBoundsCorrection)="pageChanged($event)"
+      [maxSize]="9"
+      [directionLinks]="true"
+      [autoHide]="true"
+      [responsive]="true"
+      previousLabel="Previous"
+      nextLabel="Next"
+      screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="page"
+      screenReaderCurrentLabel="You're on page"
+    >
+    </pagination-controls>
   </div>
 </section>

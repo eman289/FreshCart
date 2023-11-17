@@ -1,15 +1,21 @@
-<section>
-  <div
-    class="cartCaption bg-main-light p-5 rounded-2 shadow-sm text-center"
-    *ngIf="isEmpty"
-  >
+<section class="pt-5">
+  <div class="cartCaption text-center" *ngIf="isEmpty">
+    <img
+      src="./assets/images/empty_cart.svg"
+      class="w-100 emptyCart my-5"
+      alt=""
+    />
     <h3>Your <span class="main-color">Cart</span> Is Empty!</h3>
   </div>
 
-  <div class="bg-main-light p-4 rounded-2 shadow-sm" *ngIf="!isEmpty">
+  <div class="secTitle mb-4" *ngIf="!isEmpty">
+    <h3 class="text-center">Your <span class="main-color">Cart</span></h3>
+  </div>
+
+  <div class="bg-main-light p-5 rounded-2 shadow-sm" *ngIf="!isEmpty">
     <div class="clearBtn d-flex">
       <button
-        class="btn btn-danger text-white ms-auto"
+        class="btn btn-danger rounded-pill px-3 text-white ms-auto"
         (click)="removeAllProducts()"
       >
         <i class="fa-solid fa-trash-can"></i> Clear cart
@@ -79,7 +85,10 @@
         </div>
       </div>
     </div>
-    <button class="main-btn mt-4" [routerLink]="['/payment', cartData._id]">
+    <button
+      class="main-btn rounded-pill px-3 mt-4"
+      [routerLink]="['/payment', cartData._id]"
+    >
       Online payment <img src="./assets/images/visa-1.svg" alt="" />
     </button>
   </div>
